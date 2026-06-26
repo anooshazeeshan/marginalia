@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Foundation-only stylesheet. Brand-specific base styles
+   (paper/ink color tokens, serif body typography for passages)
+   will be added once the design language is implemented. */

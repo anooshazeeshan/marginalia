@@ -1,0 +1,94 @@
+// Marginalia — Prisma schema
+// Reflects the entities agreed on in the PRD/roadmap: User, Passage,
+// Tag, Reaction ("This Stayed With Me"), and Keep (bookmark).
+// No auth logic lives here — this is schema/structure only.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(cuid())
+  username    String   @unique
+  displayName String
+  email       String   @unique
+  // Password hash, not plaintext — written by the auth service once implemented
+  passwordHash String
+  bio         String?
+  avatarUrl   String?
+  createdAt   DateTime @default(now())
+
+  passages  Passage[]
+  reactions Reaction[]
+  keeps     Keep[]
+}
+
+model Passage {
+  id             String   @id @default(cuid())
+  quote          String
+  bookTitle      String
+  author         String
+  chapterOrPage  String?
+  reflection     String
+  mood           Mood
+  sharedAt       DateTime @default(now())
+
+  owner   User   @relation(fields: [ownerId], references: [id])
+  ownerId String
+
+  tags      Tag[]      @relation("PassageTags")
+  reactions Reaction[]
+  keeps     Keep[]
+
+  @@index([ownerId])
+  @@index([sharedAt])
+}
+
+model Tag {
+  id    String @id @default(cuid())
+  label String @unique
+
+  passages Passage[] @relation("PassageTags")
+}
+
+// "This Stayed With Me" reaction — intentionally a single reaction
+// type, not a multi-emoji reaction system, per the brand's
+// non-engagement-bait design principle.
+model Reaction {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String
+  passage   Passage @relation(fields: [passageId], references: [id])
+  passageId String
+
+  @@unique([userId, passageId])
+}
+
+// Private bookmark — "Keep this"
+model Keep {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String
+  passage   Passage @relation(fields: [passageId], references: [id])
+  passageId String
+
+  @@unique([userId, passageId])
+}
+
+enum Mood {
+  wistful
+  comforting
+  devastating
+  hopeful
+  unsettling
+  electric
+}

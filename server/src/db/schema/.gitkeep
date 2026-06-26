@@ -1,0 +1,3 @@
+<!-- Reserved for any hand-written SQL or schema notes that
+     supplement the Prisma schema. Empty in the foundation phase;
+     the source of truth for the schema is server/prisma/schema.prisma. -->

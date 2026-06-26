@@ -1,0 +1,3 @@
+<!-- Prisma will generate migration files here automatically when
+     you run `npx prisma migrate dev`. Empty until the first migration
+     is created. -->
