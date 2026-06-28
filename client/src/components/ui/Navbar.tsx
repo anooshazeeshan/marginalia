@@ -7,7 +7,7 @@ export default function Navbar() {
         to="/"
         className="flex items-center gap-2 text-2xl font-serif font-semibold"
       >
-        ❦ Marginalia
+        ⋆｡°✩ Marginalia
       </Link>
 
       <div className="flex items-center gap-8 text-sm">

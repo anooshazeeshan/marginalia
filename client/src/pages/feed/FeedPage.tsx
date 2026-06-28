@@ -3,19 +3,22 @@ import { Link } from "react-router-dom";
 
 const books = [
   {
+    id: 1,
     title: "Pride and Prejudice",
     author: "Jane Austen",
-    readers: "1.2k readers",
+    color: "bg-rose-100",
   },
   {
+    id: 2,
     title: "The Secret History",
     author: "Donna Tartt",
-    readers: "820 readers",
+    color: "bg-stone-200",
   },
   {
+    id: 3,
     title: "The Picture of Dorian Gray",
     author: "Oscar Wilde",
-    readers: "940 readers",
+    color: "bg-emerald-100",
   },
 ];
 
@@ -25,34 +28,34 @@ export default function FeedPage() {
       <Navbar />
 
       <main className="max-w-6xl mx-auto px-8 py-16">
-        <h1 className="text-5xl font-serif mb-3">
+        <h1 className="text-5xl font-serif">
           Explore Books
         </h1>
 
-        <p className="text-gray-500 mb-12">
-          Discover books readers are discussing right now.
+        <p className="mt-4 text-gray-500">
+          Every highlighted sentence begins a conversation.
         </p>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-10 mt-16">
           {books.map((book) => (
             <Link
-              key={book.title}
+              key={book.id}
               to="/passages/1"
-              className="border rounded-2xl p-8 hover:shadow-lg transition-all duration-300 cursor-pointer block"
+              className="group"
             >
-              <div className="h-56 rounded-xl bg-stone-200 mb-6"></div>
+              <div
+                className={`${book.color} h-80 rounded-3xl shadow-md group-hover:-translate-y-2 transition-all duration-300 flex items-end p-8`}
+              >
+                <div>
+                  <h2 className="text-3xl font-serif">
+                    {book.title}
+                  </h2>
 
-              <h2 className="text-2xl font-semibold">
-                {book.title}
-              </h2>
-
-              <p className="mt-2 text-gray-500">
-                {book.author}
-              </p>
-
-              <p className="mt-8 text-sm text-gray-400">
-                {book.readers}
-              </p>
+                  <p className="mt-3">
+                    {book.author}
+                  </p>
+                </div>
+              </div>
             </Link>
           ))}
         </div>
