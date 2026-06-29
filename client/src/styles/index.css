@@ -2,6 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Foundation-only stylesheet. Brand-specific base styles
-   (paper/ink color tokens, serif body typography for passages)
-   will be added once the design language is implemented. */
+/* --------------------------------------------------
+   Marginalia Design System v1
+   Sprint 2.5
+-------------------------------------------------- */
+
+:root {
+  --paper: #F8F5F0;
+  --ink: #1E1E1E;
+  --muted: #6B7280;
+  --border: #E7E2DA;
+  --accent: #2F4F4F;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+
+  font-family:
+    Inter,
+    system-ui,
+    sans-serif;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(47,79,79,.18);
+}
+
+button {
+  transition:
+    all .25s ease;
+}
+
+img {
+  user-select: none;
+}
+
+* {
+  box-sizing: border-box;
+}

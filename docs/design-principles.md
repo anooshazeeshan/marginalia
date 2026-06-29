@@ -59,3 +59,17 @@ One meaningful interaction is better than one hundred meaningless ones.
 Avoid trendy UI.
 
 Build something that still feels beautiful five years from now.
+
+---
+
+## Design Language (Sprint 2.5)
+
+Marginalia should feel calm, literary, and timeless.
+
+The interface should disappear behind the reading experience.
+
+Every animation should be subtle.
+
+Every page should breathe through generous whitespace.
+
+Books—not UI—are the visual focus.

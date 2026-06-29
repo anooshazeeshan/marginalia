@@ -23,13 +23,15 @@ export default function PassageDetailPage() {
     <>
       <Navbar />
 
-      <main className="max-w-6xl mx-auto px-8 py-16">
+      <main className="max-w-6xl mx-auto px-6 md:px-8 py-16">
 
         <section className="grid md:grid-cols-[260px_1fr] gap-16 items-center">
 
-          <div className="h-[380px] rounded-3xl bg-stone-200 shadow-xl flex items-center justify-center">
+          <div className="h-[380px] rounded-3xl bg-stone-200 shadow-lg border border-stone-300 flex items-center justify-center">
 
-            <span className="text-7xl">📖</span>
+            <span className="font-serif text-5xl text-stone-600">
+              Marginalia
+            </span>
 
           </div>
 
@@ -39,7 +41,7 @@ export default function PassageDetailPage() {
               Jane Austen
             </p>
 
-            <h1 className="text-6xl font-serif mt-3">
+            <h1 className="font-serif text-5xl md:text-6xl mt-4">
               Pride and Prejudice
             </h1>
 
@@ -48,13 +50,13 @@ export default function PassageDetailPage() {
               pride, misunderstanding and human nature.
             </p>
 
-            <div className="flex gap-8 mt-8 text-gray-500">
+            <div className="flex flex-wrap gap-8 mt-8 text-gray-500 text-sm">
 
-              <span>⭐ 4.8</span>
+              <span>4.8 Rating</span>
 
-              <span>📚 2.4M Readers</span>
+              <span>2.4M Readers</span>
 
-              <span>💬 12.5k Notes</span>
+              <span>12.5K Notes</span>
 
             </div>
 
@@ -62,33 +64,33 @@ export default function PassageDetailPage() {
 
         </section>
 
-        <section className="mt-20 rounded-3xl border bg-stone-50 p-12">
+        <section className="mt-20 rounded-3xl border border-stone-300 bg-stone-50 p-12">
 
-          <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-8">
+          <p className="uppercase tracking-[0.3em] text-xs text-gray-400">
             Most Loved Passage
           </p>
 
-          <p className="text-4xl italic leading-relaxed font-serif">
+          <blockquote className="mt-8 font-serif text-4xl leading-relaxed italic">
             “I could easily forgive his pride,
             if he had not mortified mine.”
-          </p>
+          </blockquote>
 
           <div className="flex flex-wrap gap-4 mt-12">
 
-            <button className="rounded-full bg-black text-white px-6 py-3 hover:scale-105 transition-all duration-300">
-              📚 Keep
+            <button className="rounded-full bg-black text-white px-6 py-3 hover:scale-105 transition">
+              Keep
             </button>
 
-            <button className="rounded-full border px-6 py-3 hover:bg-black hover:text-white transition-all duration-300">
-              ❤️ Love
+            <button className="rounded-full border border-stone-300 px-6 py-3 hover:bg-black hover:text-white transition">
+              Love
             </button>
 
-            <button className="rounded-full border px-6 py-3 hover:bg-black hover:text-white transition-all duration-300">
-              💡 Insightful
+            <button className="rounded-full border border-stone-300 px-6 py-3 hover:bg-black hover:text-white transition">
+              Insightful
             </button>
 
-            <button className="rounded-full border px-6 py-3 hover:bg-black hover:text-white transition-all duration-300">
-              😭 Emotional
+            <button className="rounded-full border border-stone-300 px-6 py-3 hover:bg-black hover:text-white transition">
+              Emotional
             </button>
 
           </div>
@@ -97,11 +99,11 @@ export default function PassageDetailPage() {
 
         <section className="mt-20">
 
-          <h2 className="text-4xl font-serif">
+          <h2 className="font-serif text-4xl">
             In the Margins
           </h2>
 
-          <p className="text-gray-500 mt-3">
+          <p className="mt-3 text-gray-500">
             Thoughts readers left beside this passage.
           </p>
 
@@ -109,19 +111,19 @@ export default function PassageDetailPage() {
 
             {notes.map((note) => (
 
-              <div
+              <article
                 key={note.name}
-                className="rounded-2xl border p-8 hover:shadow-lg transition-all duration-300"
+                className="rounded-2xl border border-stone-300 bg-white/60 p-8 hover:shadow-lg transition-all duration-300"
               >
 
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center">
 
                   <h3 className="font-semibold">
                     {note.name}
                   </h3>
 
                   <button className="text-sm text-gray-400 hover:text-black">
-                    ❤️ Love
+                    Appreciate
                   </button>
 
                 </div>
@@ -130,7 +132,7 @@ export default function PassageDetailPage() {
                   {note.thought}
                 </p>
 
-              </div>
+              </article>
 
             ))}
 
@@ -140,23 +142,22 @@ export default function PassageDetailPage() {
 
         <section className="mt-24 rounded-3xl bg-black text-white text-center p-14">
 
-          <h2 className="text-4xl font-serif">
+          <h2 className="font-serif text-4xl">
             Leave something in the margins.
           </h2>
 
-          <p className="mt-5 max-w-2xl mx-auto text-gray-300 leading-8">
+          <p className="mt-6 max-w-2xl mx-auto leading-8 text-gray-300">
             Every reader notices something different.
             Join Marginalia and leave your own thoughts beside the books you love.
           </p>
 
-          <button className="mt-10 rounded-full bg-white text-black px-8 py-3 hover:scale-105 transition-all duration-300">
+          <button className="mt-10 rounded-full bg-white text-black px-8 py-3 hover:scale-105 transition">
             Join Marginalia
           </button>
 
         </section>
 
       </main>
-
     </>
   );
 }

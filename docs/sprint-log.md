@@ -79,3 +79,33 @@ This document records every completed sprint, major milestones, and upcoming wor
 ## Next Sprint
 
 Sprint 2.5 — Design System
+
+# Sprint 2.5 — Design System
+
+## Status
+
+✅ Completed
+
+### Finished
+
+* Global Design Tokens
+* Typography Improvements
+* Responsive Navbar
+* Premium Hero
+* Feed Card Redesign
+* Passage Page Polish
+* Footer Refresh
+* Softer Visual Language
+
+### Product Decisions
+
+* Landing page remains accessible without login.
+* Books remain the primary focus.
+* Social features support reading rather than distract from it.
+* Design favors calmness over visual noise.
+
+---
+
+## Next Sprint
+
+Sprint 3 — The First Reader
