@@ -50,31 +50,32 @@ This document records every completed sprint, major milestones, and upcoming wor
 
 ## Status
 
-🟡 In Progress
+✅ Completed
 
 ### Finished
 
-* Elegant feed
-* Featured passage
-* In the Margins section
-* Keep button
-* Reader reactions
+* Improved Landing Page
+* Responsive Navigation
+* Hero Section
+* Featured Books
+* Feed Page
+* Premium Book Header
+* Featured Passage
+* In the Margins
+* Reader Reactions
 * Join Marginalia CTA
+* Responsive QA
+* Product Documentation
 
-### Remaining
+### Product Decisions
 
-* Rich book covers
-* UI polish
-* Better typography
+* Guests experience Marginalia before signing up.
+* Reading should feel calm and distraction-free.
+* Marginalia uses its own vocabulary ("Keep", "In the Margins").
+* Design should prioritize books over social features.
 
 ---
 
-# Upcoming
+## Next Sprint
 
-## Sprint 3
-
-* Authentication
-* Profiles
-* Real users
-* Real notes
-* Database
+Sprint 2.5 — Design System
