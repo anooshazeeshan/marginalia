@@ -109,3 +109,26 @@ Sprint 2.5 — Design System
 ## Next Sprint
 
 Sprint 3 — The First Reader
+
+## Sprint 3
+
+- ✅ Connected project to Neon PostgreSQL
+- ✅ Created first Prisma migration
+- ✅ Generated Prisma client
+- ✅ Auth service created
+- ✅ Auth controller created
+- ✅ Auth routes created
+- ✅ Express router connected
+- ✅ Verified `/api/auth/signup` endpoint (POST only)
+
+## Sprint 3B ✅
+
+- Connected Neon PostgreSQL database
+- Completed Prisma migration
+- Implemented signup API
+- Connected frontend signup form
+- Successfully created Reader #1
+- Automatic redirect to feed works
+
+🎉 Milestone:
+Anoosha Zeeshan became the first registered reader of Marginalia.

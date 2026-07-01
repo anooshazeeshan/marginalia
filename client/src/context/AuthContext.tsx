@@ -1,36 +1,94 @@
-import { createContext, useContext } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
 
-/**
- * AUTH SCAFFOLD ONLY — no implementation yet.
- *
- * This defines the *shape* of auth state the rest of the app will
- * consume, so pages/components can be written against a stable
- * interface before the real logic (signup/login, token storage,
- * session restoration) is built.
- */
+import axios from "axios";
+import { getToken, logout as logoutService } from "@/services/auth.service";
+
 export interface AuthUser {
   id: string;
   username: string;
   displayName: string;
+  email?: string;
 }
 
-export interface AuthContextValue {
+interface AuthContextType {
   user: AuthUser | null;
-  isLoading: boolean;
-  // login, logout, signup intentionally omitted until implemented
+  isAuthenticated: boolean;
+  loading: boolean;
+  logout: () => void;
 }
 
-export const AuthContext = createContext<AuthContextValue | undefined>(
-  undefined,
-);
+const AuthContext = createContext<AuthContextType | null>(null);
 
-export function useAuth(): AuthContextValue {
-  const ctx = useContext(AuthContext);
-  if (!ctx) {
-    throw new Error("useAuth must be used within an AuthProvider");
+export function AuthProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const [user, setUser] = useState<AuthUser | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadUser() {
+      const token = getToken();
+
+      if (!token) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const res = await axios.get(
+          "http://localhost:4000/api/auth/me",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+
+        setUser(res.data);
+      } catch {
+        logoutService();
+        setUser(null);
+      }
+
+      setLoading(false);
+    }
+
+    loadUser();
+  }, []);
+
+  function logout() {
+    logoutService();
+    setUser(null);
   }
+
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        isAuthenticated: !!user,
+        loading,
+        logout,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+export function useAuth() {
+  const ctx = useContext(AuthContext);
+
+  if (!ctx) {
+    throw new Error("useAuth must be used inside AuthProvider");
+  }
+
   return ctx;
 }
-
-// AuthProvider implementation intentionally not included in the
-// foundation phase — see docs/roadmap.md.

@@ -1,12 +1,39 @@
-import type { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
 
-/**
- * SCAFFOLD ONLY. Once implemented, this middleware will verify the
- * JWT from the Authorization header and attach the authenticated
- * user to `req`. Currently a pass-through placeholder so route files
- * can reference it without breaking the build.
- */
-export function requireAuth(_req: Request, _res: Response, next: NextFunction) {
-  // TODO: verify JWT, attach req.user, or respond 401
-  next();
+export interface AuthRequest extends Request {
+  userId?: string;
+}
+
+export function requireAuth(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader) {
+    return res.status(401).json({
+      message: "Unauthorized",
+    });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  try {
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET!,
+    ) as {
+      id: string;
+    };
+
+    req.userId = decoded.id;
+
+    next();
+  } catch {
+    return res.status(401).json({
+      message: "Invalid token",
+    });
+  }
 }
